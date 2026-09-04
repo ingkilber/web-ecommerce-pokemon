@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Administrador | GHOSTNOX</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body data-page="admin">
+    <main class="admin-wrap"><a class="brand" href="index.html">GHOSTNOX</a>
+        <section class="admin-login">
+            <form id="admin-login">
+                <p class="eyebrow">GESTOR ADMINISTRADOR</p>
+                <h1>Iniciar sesión</h1><label>Usuario<input name="username" required></label><label>Contraseña<input
+                        name="password" type="password" required></label><button class="button">Ingresar</button>
+                <p class="form-message" data-login-error></p>
+            </form>
+        </section>
+        <section id="admin-panel" hidden>
+            <div class="admin-heading">
+                <div>
+                    <p class="eyebrow">GESTOR ADMINISTRADOR</p>
+                    <h1>Cartas Singles</h1>
+                    <p>Agregá cartas para publicarlas inmediatamente en Singles.</p>
+                </div>
+                <div><a class="quiet" href="singles.html">Ver Singles</a><button id="admin-logout"
+                        class="quiet">Salir</button></div>
+            </div>
+            <div class="admin-grid">
+                <form id="admin-card-form" class="admin-form">
+                    <h2>Nueva carta</h2><label>Nombre<input name="name" required></label>
+                    <div class="form-row"><label>Número<input name="number" required></label><label>Precio (ARS)<input
+                                name="price" type="number" min="0" required></label></div><label>Expansión / set<input
+                            name="expansion" required></label>
+                    <div class="form-row"><label>Tipo<select name="type">
+                                <option>Agua</option>
+                                <option>Fuego</option>
+                                <option>Planta</option>
+                                <option>Rayo</option>
+                                <option>Psíquico</option>
+                                <option>Oscuridad</option>
+                                <option>Dragón</option>
+                                <option>Incoloro</option>
+                                <option>Lucha</option>
+                            </select></label><label>Rareza<input name="rarity" required></label></div>
+                    <div class="form-row"><label>Idioma<select name="language">
+                                <option>Español</option>
+                                <option>Inglés</option>
+                                <option>Japonés</option>
+                            </select></label><label>Estado<select name="condition">
+                                <option>Casi perfecta</option>
+                                <option>Excelente</option>
+                                <option>Ligeramente jugada</option>
+                                <option>Jugado</option>
+                            </select></label></div><label>Stock<input name="stock" type="number" min="0" value="1"
+                            required></label><label>Imagen (opcional)<input name="image" type="file"
+                            accept="image/*"></label><label>Descripción<textarea name="description"
+                            rows="3"></textarea></label><button class="button">Guardar carta</button>
+                    <p id="admin-message" class="form-message"></p>
+                </form>
+                <section class="admin-inventory">
+                    <div>
+                        <h2>Inventario</h2><button id="export-json">Exportar JSON</button>
+                    </div>
+                    <p>Se guarda en este navegador. Exportá el JSON como respaldo.</p>
+                    <ul id="admin-list"></ul>
+                </section>
+            </div>
+        </section>
+    </main>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
