@@ -1,0 +1,148 @@
+/* Pokébola 3D escalable: CSS vectorial, nítido incluso en pantallas 4K. */
+.ghostnox-intro {
+  isolation: isolate;
+  perspective: 1100px;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(173, 78, 231, .26), transparent 24%),
+    radial-gradient(circle at 50% 45%, #271136 0, #100817 42%, #040306 100%) !important;
+}
+.ghostnox-intro::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, #d564ce 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 22%, #fff 0 1px, transparent 2px),
+    radial-gradient(circle at 84% 68%, #8e46c7 0 1.5px, transparent 3px),
+    radial-gradient(circle at 34% 78%, #fff 0 1px, transparent 2px);
+  background-size: 190px 190px, 260px 260px, 310px 310px, 230px 230px;
+  opacity: .46;
+  animation: introParticles 9s linear infinite;
+}
+.intro-stage {
+  width: min(620px, 94vw) !important;
+  height: min(690px, 88vh) !important;
+  isolation: isolate;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+.intro-stage::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 17px;
+  width: min(390px, 74vw);
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,0,0,.92), rgba(71,23,96,.42) 45%, transparent 72%);
+  filter: blur(10px);
+  transform: translateX(-50%) rotateX(70deg);
+  animation: groundShadow3d 3s ease-in-out infinite;
+}
+.pokeball {
+  z-index: 2;
+  width: clamp(230px, 21vw, 360px) !important;
+  bottom: 58px !important;
+  overflow: visible;
+  transform-style: preserve-3d;
+  background: linear-gradient(90deg, #09070b, #211925 48%, #050407) !important;
+  border: 2px solid rgba(255,255,255,.13);
+  box-shadow:
+    inset 18px 4px 24px rgba(255,255,255,.08),
+    inset -28px -12px 35px rgba(0,0,0,.8),
+    0 35px 48px rgba(0,0,0,.78),
+    0 0 90px rgba(181,72,225,.18) !important;
+  animation: pokeballArrival3d 1.1s cubic-bezier(.18,.9,.26,1.18) both,
+             pokeballFloat3d 3.2s 1.1s ease-in-out infinite !important;
+}
+.pokeball::before {
+  content: "";
+  position: absolute;
+  z-index: 7;
+  inset: 3%;
+  pointer-events: none;
+  border-radius: 50%;
+  background: linear-gradient(118deg, rgba(255,255,255,.52), transparent 18%, transparent 64%, rgba(0,0,0,.4));
+  mix-blend-mode: screen;
+  filter: blur(.2px);
+}
+.pokeball::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -7%;
+  border-radius: 50%;
+  border: 1px solid rgba(213,100,206,.28);
+  box-shadow: 0 0 35px rgba(213,100,206,.3), inset 0 0 25px rgba(142,70,199,.25);
+  animation: energyRing3d 2.2s ease-out infinite;
+}
+.ball-top,.ball-bottom {
+  overflow: hidden;
+  backface-visibility: hidden;
+  border-inline: 2px solid rgba(255,255,255,.12);
+}
+.ball-top {
+  background:
+    radial-gradient(circle at 32% 18%, rgba(255,255,255,.82) 0 4%, rgba(255,255,255,.22) 11%, transparent 27%),
+    radial-gradient(circle at 50% 100%, transparent 0 42%, rgba(60,0,14,.38) 76%),
+    linear-gradient(145deg,#ff6684 0,#de234f 36%,#9a1238 66%,#3c061b 100%) !important;
+  box-shadow: inset 0 12px 22px rgba(255,255,255,.18), inset -25px 0 32px rgba(49,0,17,.64);
+  animation: ballTopOpen3d .95s 1.18s cubic-bezier(.2,.75,.3,1) forwards !important;
+}
+.ball-bottom {
+  background:
+    radial-gradient(circle at 31% 18%, rgba(255,255,255,.76) 0 5%, rgba(255,255,255,.24) 12%, transparent 28%),
+    linear-gradient(145deg,#fff 0,#d9d7dd 43%,#89838e 73%,#312d35 100%) !important;
+  box-shadow: inset 0 -19px 28px rgba(0,0,0,.4), inset 18px 0 18px rgba(255,255,255,.2);
+  animation: ballBottomOpen3d .95s 1.18s cubic-bezier(.2,.75,.3,1) forwards !important;
+}
+.ball-top::after,.ball-bottom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(108deg, transparent 0 18px, rgba(255,255,255,.028) 19px, transparent 20px);
+  opacity: .65;
+}
+.ball-line {
+  top: calc(50% - 11px) !important;
+  height: 22px !important;
+  border-block: 2px solid rgba(255,255,255,.1);
+  background: linear-gradient(#08060a,#211925 45%,#070508) !important;
+  box-shadow: 0 5px 12px rgba(0,0,0,.76), inset 0 2px 3px rgba(255,255,255,.1);
+}
+.ball-core {
+  width: clamp(68px, 6vw, 94px) !important;
+  height: clamp(68px, 6vw, 94px) !important;
+  border: clamp(9px, .7vw, 13px) solid #130e17 !important;
+  background:
+    radial-gradient(circle at 36% 28%, #fff 0 8%, #f5eaff 9% 17%, #d783ec 29%, #8b38bb 48%, #32113f 72%) !important;
+  box-shadow:
+    inset 6px 7px 10px rgba(255,255,255,.35),
+    inset -8px -8px 14px rgba(25,2,36,.8),
+    0 0 0 2px rgba(255,255,255,.14),
+    0 0 30px rgba(231,126,255,.75),
+    0 0 65px rgba(142,70,199,.5);
+  animation: corePulse3d 1.35s ease-in-out infinite;
+}
+.intro-logo-wrap {
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.9)) drop-shadow(0 0 22px rgba(213,100,206,.3));
+  animation: logoReveal3d 1.2s 1.48s cubic-bezier(.18,.9,.25,1) forwards !important;
+}
+.skip-intro {
+  backdrop-filter: blur(12px);
+  background: rgba(14,8,19,.55) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 8px 28px rgba(0,0,0,.35);
+}
+@keyframes pokeballArrival3d{0%{opacity:0;transform:translate(-50%,150px) rotateX(-22deg) rotateY(-28deg) scale(.58)}65%{opacity:1;transform:translate(-50%,-10px) rotateX(8deg) rotateY(12deg) scale(1.04)}100%{transform:translateX(-50%) rotateX(0) rotateY(0) scale(1)}}
+@keyframes pokeballFloat3d{0%,100%{transform:translateX(-50%) translateY(0) rotateY(-3deg)}50%{transform:translateX(-50%) translateY(-9px) rotateY(3deg)}}
+@keyframes ballTopOpen3d{to{transform:translateY(-52px) rotateX(-14deg);opacity:.48;filter:brightness(1.15)}}
+@keyframes ballBottomOpen3d{to{transform:translateY(31px) rotateX(10deg);opacity:.58;filter:brightness(.82)}}
+@keyframes corePulse3d{0%,100%{filter:brightness(.9);box-shadow:inset 6px 7px 10px rgba(255,255,255,.35),inset -8px -8px 14px rgba(25,2,36,.8),0 0 20px rgba(231,126,255,.55),0 0 45px rgba(142,70,199,.35)}50%{filter:brightness(1.35);box-shadow:inset 6px 7px 10px rgba(255,255,255,.55),inset -8px -8px 14px rgba(25,2,36,.7),0 0 38px rgba(244,175,255,.9),0 0 90px rgba(142,70,199,.68)}}
+@keyframes energyRing3d{0%{opacity:.7;transform:scale(.86)}70%,100%{opacity:0;transform:scale(1.22)}}
+@keyframes logoReveal3d{from{opacity:0;transform:translateY(18px) translateZ(-60px) scale(.78);filter:blur(8px)}to{opacity:1;transform:translateY(-52px) translateZ(40px) scale(1);filter:blur(0)}}
+@keyframes groundShadow3d{0%,100%{opacity:.82;transform:translateX(-50%) rotateX(70deg) scale(1)}50%{opacity:.58;transform:translateX(-50%) rotateX(70deg) scale(.9)}}
+@keyframes introParticles{to{transform:translate3d(24px,-36px,0) rotate(.5deg)}}
+@media(max-width:760px){.intro-stage{height:min(570px,86vh)!important}.pokeball{width:min(270px,66vw)!important;bottom:42px!important}.intro-logo-wrap{width:88%!important;left:6%!important}.intro-stage::after{bottom:5px}}
+@media(prefers-reduced-motion:reduce){.ghostnox-intro *,.ghostnox-intro::before,.ghostnox-intro::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
