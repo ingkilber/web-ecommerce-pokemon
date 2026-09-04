@@ -1,0 +1,1 @@
+.contact{padding:90px 20px;text-align:center;background:var(--color-surface)}.contact p:not(.eyebrow){color:#b8aabe}.contact a+a{margin-left:15px;color:var(--color-secondary)}.social-links{display:flex;gap:14px}@media(max-width:760px){.contact{padding:70px 20px}.social-links{justify-content:center;flex-wrap:wrap}}
