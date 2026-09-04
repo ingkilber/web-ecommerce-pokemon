@@ -26,6 +26,7 @@ create table if not exists public.cards (
   language text not null default 'Español',
   condition text not null default 'Casi perfecta',
   pokemon_name text,
+  card_type text not null default 'Sin especificar',
   set_name text,
   slug text unique,
   created_at timestamptz not null default now(),

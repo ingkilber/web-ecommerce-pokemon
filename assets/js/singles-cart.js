@@ -17,6 +17,15 @@ document.addEventListener('click', async event => {
   document.querySelector('[data-cart-panel]')?.classList.add('open');
   document.querySelector('[data-overlay]')?.classList.add('visible');
 });
+document.addEventListener('click', async event => {
+  if (document.body.dataset.page !== 'singles') return;
+  if (event.target.closest('button, select, input, label')) return;
+  const article = event.target.closest('.single[data-card-id]');
+  if (!article) return;
+  const cards = await getActiveCards('single');
+  const card = cards.find(item => item.id === article.dataset.cardId);
+  if (card) window.openCardDialog?.(card);
+});
 const panel = document.querySelector('[data-cart-panel]'), overlay = document.querySelector('[data-overlay]');
 document.querySelector('[data-cart-button]')?.addEventListener('click', () => { panel?.classList.add('open'); overlay?.classList.add('visible'); });
 document.querySelector('[data-close-cart]')?.addEventListener('click', () => { panel?.classList.remove('open'); overlay?.classList.remove('visible'); });
