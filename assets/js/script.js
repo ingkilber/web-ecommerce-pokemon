@@ -11,6 +11,7 @@ function setupBrand() {
   $('.hero h1').innerHTML = 'Cartas Pokémon <em>originales</em><br>para tu colección.';
   $('.copy>p:not(.eyebrow)').textContent = 'Comprá cartas Pokémon originales, verificadas y protegidas. Encontrá piezas para empezar, completar o elevar tu colección.';
   $('.hero .button').textContent = 'Ver cartas originales →';
+  $('.hero .button').href = 'singles.html';
   $('.hero-art').innerHTML = '<img class="ghostnox-hero-logo" src="readme-images/GHOSTNOX-GRANDE.png" alt="GHOSTNOX">';
   $('nav')?.insertAdjacentHTML('beforeend', '<a href="#contacto">Contacto</a>');
   const footer = $('footer');
