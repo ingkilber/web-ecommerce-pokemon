@@ -1,3 +1,5 @@
+import { getAllCards, updateCard } from './services/cards-service.js';
+
 function enhanceAdmin() {
   const form = document.querySelector('#admin-card-form');
   if (!form || form.dataset.enhancedFields) return false;
@@ -29,8 +31,34 @@ function enhanceAdmin() {
       show('Guardando carta…', 'Estamos guardando los cambios. Esto puede tardar unos segundos si subiste una imagen.', 'loading');
       const submitButton = form.querySelector('button[type="submit"], .button');
       if (submitButton) submitButton.disabled = true;
+      const data = new FormData(form);
+      const cardId = data.get('id');
+      const advancedFields = {
+        card_type: data.get('card_type'),
+        grading_company: data.get('grading_company').trim() || null,
+        grading_grade: data.get('grading_grade') ? Number(data.get('grading_grade')) : null
+      };
+      try {
+        // Se actualizan primero para que el refresco del gestor lea la carta completa.
+        if (cardId) await updateCard(cardId, advancedFields);
+      } catch (error) {
+        document.querySelector('#admin-message').textContent = error.message;
+        show('No se pudo guardar', error.message, 'error');
+        if (submitButton) submitButton.disabled = false;
+        return;
+      }
       await originalSubmit.call(form, event);
-      const message = document.querySelector('#admin-message')?.textContent;
+      let message = document.querySelector('#admin-message')?.textContent;
+      if (message === 'Carta guardada correctamente.' && !cardId) {
+        try {
+          const savedCard = (await getAllCards()).find(card => card.name === data.get('name').trim());
+          if (!savedCard) throw new Error('No fue posible identificar la carta recién creada.');
+          await updateCard(savedCard.id, advancedFields);
+        } catch (error) {
+          message = error.message;
+          document.querySelector('#admin-message').textContent = message;
+        }
+      }
       if (message === 'Carta guardada correctamente.') show('Carta guardada', 'Los cambios se guardaron exitosamente. Seguís en el gestor administrador.', 'success');
       else show('No se pudo guardar', message || 'Intentá nuevamente.', 'error');
       if (submitButton) submitButton.disabled = false;
