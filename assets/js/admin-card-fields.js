@@ -6,6 +6,7 @@ function enhanceAdmin() {
   const categoryValue = category.value;
   category.outerHTML = `<input name="category" list="card-categories" value="${categoryValue}" required><datalist id="card-categories"><option value="single"><option value="sealed"><option value="accesorio"><option value="lote"></datalist>`;
   form.querySelector('.form-row').insertAdjacentHTML('afterend', '<div class="form-row"><label>Tipo Pokémon<select name="card_type"><option>Sin especificar</option><option>Agua</option><option>Fuego</option><option>Planta</option><option>Rayo</option><option>Psíquico</option><option>Oscuridad</option><option>Dragón</option><option>Incoloro</option><option>Lucha</option></select></label><label>Empresa de gradación<input name="grading_company" placeholder="PSA, CGC, BGS..."></label></div><label>Grado de la carta<input name="grading_grade" type="number" min="0" max="10" step="0.5" placeholder="Ej.: 9.5"></label>');
+  form.elements.card_type.insertAdjacentHTML('beforeend', '<option>Metal</option>');
   if (!form.elements.id.value) form.elements.condition.value = 'Nueva';
   form.addEventListener('reset', () => setTimeout(() => {
     if (!form.elements.id.value) form.elements.condition.value = 'Nueva';
