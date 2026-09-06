@@ -24,7 +24,7 @@ create table if not exists public.cards (
   featured boolean not null default false,
   card_number text,
   language text not null default 'Español',
-  condition text not null default 'Casi perfecta',
+  condition text not null default 'Nueva',
   pokemon_name text,
   card_type text not null default 'Sin especificar',
   is_signed boolean not null default false,
@@ -50,6 +50,8 @@ create or replace function public.set_updated_at() returns trigger language plpg
 begin new.updated_at = now(); return new; end; $$;
 drop trigger if exists cards_updated_at on public.cards;
 create trigger cards_updated_at before update on public.cards for each row execute function public.set_updated_at();
+
+alter table public.cards alter column condition set default 'Nueva';
 
 create or replace function public.handle_new_user() returns trigger language plpgsql security definer set search_path = public as $$
 begin insert into public.profiles (id, email) values (new.id, coalesce(new.email, '')); return new; end; $$;
