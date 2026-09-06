@@ -27,7 +27,10 @@ function enhanceAdmin() {
     const title = modal.querySelector('h2'), detail = modal.querySelector('p'), close = modal.querySelector('button');
     const show = (heading, text, state) => { modal.dataset.state = state; title.textContent = heading; detail.textContent = text; close.hidden = state === 'loading'; modal.hidden = false; modal.style.display = 'grid'; };
     close.onclick = () => { modal.hidden = true; modal.style.display = 'none'; };
-    form.onsubmit = async event => {
+    form.addEventListener('submit', async event => {
+      // Bloquea el envío nativo y cualquier manejador duplicado: nunca recarga la página.
+      event.preventDefault();
+      event.stopImmediatePropagation();
       show('Guardando carta…', 'Estamos guardando los cambios. Esto puede tardar unos segundos si subiste una imagen.', 'loading');
       const submitButton = form.querySelector('button[type="submit"], .button');
       if (submitButton) submitButton.disabled = true;
@@ -59,10 +62,13 @@ function enhanceAdmin() {
           document.querySelector('#admin-message').textContent = message;
         }
       }
-      if (message === 'Carta guardada correctamente.') show('Carta guardada', 'Los cambios se guardaron exitosamente. Seguís en el gestor administrador.', 'success');
+      if (message === 'Carta guardada correctamente.') {
+        show('Carta guardada', 'Los cambios se guardaron exitosamente. Seguís en el gestor administrador.', 'success');
+        setTimeout(() => close.click(), 1400);
+      }
       else show('No se pudo guardar', message || 'Intentá nuevamente.', 'error');
       if (submitButton) submitButton.disabled = false;
-    };
+    }, true);
   };
   bindFeedback();
   return true;
