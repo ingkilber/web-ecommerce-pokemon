@@ -5,8 +5,9 @@ alter table public.cards
 
 
 alter table public.cards drop constraint if exists cards_card_type_check;
+update public.cards set card_type = 'Sin especificar' where card_type = 'Dragón';
 alter table public.cards add constraint cards_card_type_check
-  check (card_type in ('Agua', 'Fuego', 'Planta', 'Rayo', 'Psíquico', 'Oscuridad', 'Dragón', 'Incoloro', 'Lucha', 'Metal', 'Sin especificar'));
+  check (card_type in ('Agua', 'Fuego', 'Planta', 'Rayo', 'Psíquico', 'Oscuridad', 'Incoloro', 'Lucha', 'Metal', 'Sin especificar'));
 
 update public.cards
 set card_type = case name
