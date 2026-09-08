@@ -26,7 +26,7 @@ create table if not exists public.cards (
   language text not null default 'Español',
   condition text not null default 'Nueva',
   pokemon_name text,
-  card_type text not null default 'Sin especificar',
+  card_type text not null default 'Sin especificar' check (card_type in ('Agua', 'Fuego', 'Planta', 'Rayo', 'Psíquico', 'Oscuridad', 'Incoloro', 'Lucha', 'Metal', 'Entrenador', 'Sin especificar')),
   is_signed boolean not null default false,
   is_reverse_holo boolean not null default false,
   is_altered boolean not null default false,
